@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Javascript - 암호화 형태</title>
+</head>
+<body>
+<form id="frm" method="get" action="./securityok.do">
+<input type="hidden" name="pwd" value="">
+비밀번호 : <input type="text" name="password">
+<input type="button" value="클릭" onclick="abc()">
+</form>
+
+<!-- 한글 인코딩 -->
+<form id="frm2">
+고객명 : <input type="text" name="user">
+<input type="button" value="클릭" onclick="base64()">
+</form>
+
+<script>
+// encodeURIComponent 이용하여 한글을 btoa에 적용하여 암호화를 사용가능
+function base64(){
+	var word = frm2.user.value;
+//	decodeURI
+	var encode = window.btoa(encodeURIComponent(word));
+	console.log(encode);
+}
+
+
+
+
+// base64 암호화를 이용하여 사용자가 입력한 값을 다른 문자화로 변환이 가능하며,
+// 복호화 가능합니다. 단, 개인정보에서는 사용하지 않습니다.
+// javascript : btoa, atob
+function abc(){
+	var pw = frm.password.value;
+	var encode = window.btoa(pw);	// 사용자가 입력한 값을 base64 암호화
+	var decode = window.atob(encode);	// base64 암호화를 원래 단어로 복원 (Decoding)
+	frm.pwd.value = encode; // 암호화된 문자값을 Back-end로 전달
+	frm2.submit();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>review</title>
+</head>
+<body>
+<form id="frm" method="post" action="./review.do" onsubmit="return save_review();">
+<div id="review_container">
+<label>상품리뷰<input id="review_description" name="review_description" type="text"></label>
+</div>
+<div id="assessed_container">
+<label>별점   	
+<select name="assessed">
+<option value="5">5</option>
+<option value="4">4</option>
+<option value="3">3</option>
+<option value="2">2</option>
+<option value="1">1</option>
+</select>
+</label>
+</div>
+<div id="button_container">
+<input type="submit" value="리뷰 등록">
+</div>
+</form>
+</body>
+<script>
+
+function save_review(){
+//	const a = document.querySelector("option").value;
+	const b = document.getElementById("review_description").value;
+	if(b == ''){
+		alert("리뷰 내용을 입력하세요");
+		return false;
+	} else {
+		frm.submit();
+	}	
+}
+</script>
+
+
+</html>

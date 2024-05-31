@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="frm" method="post" action="http://172.30.1.41:8080/web/reservation_print.do">
+<label>야영장명 : <input name="camp" type="text" readonly="readonly"></label><br>
+<label>입실일자 : <input name="indate" type="text" readonly="readonly"></label><br>
+<label>퇴실일자 : <input name="outdate" type="text" readonly="readonly"></label><br>
+<label>예약자명 : <input name="member" type="text" readonly="readonly">명</label><br>
+<label>연락처 : <input name="tel" pattern="(010)\d{3,4}\d{4}" type="text" required="required"> "-" 미입력</label><br>
+<label>이메일 : <input name="email" type="email" required="required"></label><br>
+ <input type="submit" value="결제 선택" >
+</form>
+<div id="info_print"></div>
+</body>
+<script>
+
+//info=내장산-치인&indate=2024-05-02&outdate=2024-05-22&no=3
+var data = window.location.search;	// URL에 값 중 URI(파라미터) 값만 확인하는 함수
+var sp = data.split("&");	//split 해당 단어에 모든 기점으로 배열화가 되며 해당 단어는 삭제됨
+console.log(sp);
+var nm = sp[0].split("=");
+var nm1 = sp[1].split("=");
+var nm2 = sp[2].split("=");
+var nm3 = sp[3].split("=");
+frm.camp.value = decodeURI(nm[1]);
+frm.indate.value = decodeURI(nm1[1]);
+frm.outdate.value = decodeURI(nm2[1]);
+frm.member.value = decodeURI(nm3[1]);
+if(sp.length > 1){
+	var f;
+	for(f=1;f<sp.length;f++){	// 첫번째 배열(0)은 고객명값이므로 이미 처리가 완료됨 그 외에 배열을 검토 
+		var arr = sp[f].split("=");
+		// 배열값 중 0번째를 기점으로 id에 활용을 하며, 1번째 데이터 값을 innerHTML로 변경
+		document.getElementById(arr[0]).innerHTML = arr[1];
+		document.getElementsByName(arr[0])[0].value = arr[1];
+	}	
+}
+
+
+
+
+</script>
+</html>
+
+

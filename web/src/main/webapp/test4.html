@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>패스워드 입력 파트</title>
+</head>
+<body>
+<form id="frm" method="post" action="./test3.do">
+<input type="hidden" name="part" value="2">
+<input type="hidden" name="mid" value="">
+패스워드 : <input type="password" name="mpass"><br>
+<input type="submit" value="로그인"><br>
+</form>
+</body>
+<script>
+var userid = localStorage.getItem("mid");
+frm.mid.value = userid;
+</script>
+</html>

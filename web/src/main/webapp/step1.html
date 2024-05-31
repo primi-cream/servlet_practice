@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Step1 > Step2.html</title>
+</head>
+<body>
+<!-- 같은 HTML 파일로 데이터 전송시 get으로 설정 가능 -->
+<form id="frm" method="get" action="./step2.html">
+고객명 : <input type="text" name="user"><br>
+<input type="checkbox" name="sms" value="Y">SMS 수신동의(선택)<br>
+<input type="checkbox" name="mail" value="Y">이벤트 수신동의(선택)<br>
+<input type="checkbox" name="kakao" value="Y">카카오톡 푸시알림(선택)<br>
+<input type="button" value="전송" onclick="gopage()">
+</form>
+</body>
+<script>
+function gopage(){
+	frm.submit();
+}
+</script>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>web</display-name>
+  <!-- package 및 java 파일을 가상의 이름으로 변경 단, servlet-name 중복 불가-->
+  <servlet>
+  	<servlet-name>site</servlet-name>
+  	<servlet-class>web.site</servlet-class>	<!-- 해당 java class명을 로드 -->
+  </servlet>
+  <!-- java 파일을 web에서 작동 되도록 하는 역할 -->
+  <servlet-mapping>
+  	<servlet-name>site</servlet-name>	<!-- servlet 가상 이르을 로드 -->
+  	<url-pattern>/index.do</url-pattern>	<!-- 가상 웹페이지를 출력하는 형태 -->
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>idcheck</servlet-name>
+  	<servlet-class>web.idcheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>idcheck</servlet-name>
+  	<url-pattern>/idcheck.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>info</servlet-name>
+  	<servlet-class>web.info2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>info</servlet-name>
+  	<url-pattern>/info.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>mb</servlet-name>
+  	<servlet-class>web.memberok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>mb</servlet-name>
+  	<url-pattern>/memberok.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ag</servlet-name>
+  	<servlet-class>web.agree</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ag</servlet-name>
+  	<url-pattern>/agree.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>sh</servlet-name>
+  	<servlet-class>web.searchok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>sh</servlet-name>
+  	<url-pattern>/searchok.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>code</servlet-name>
+  	<servlet-class>web.htmlcodeok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>code</servlet-name>
+  	<url-pattern>/htmlcodeok.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>userinfo</servlet-name>
+  	<servlet-class>web.userinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userinfo</servlet-name>
+  	<url-pattern>/userinfo.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>signin</servlet-name>
+  	<servlet-class>web.signin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>signin</servlet-name>
+  	<url-pattern>/sign_info.do</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+  	<servlet-name>loginok</servlet-name>
+  	<servlet-class>web.loginok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loginok</servlet-name>
+  	<url-pattern>/loginok.do</url-pattern>
+  </servlet-mapping>   
+  
+  <servlet>
+  	<servlet-name>sec</servlet-name>
+  	<servlet-class>web.securityok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>sec</servlet-name>
+  	<url-pattern>/securityok.do</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+  	<servlet-name>test3</servlet-name>
+  	<servlet-class>web.test3</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test3</servlet-name>
+  	<url-pattern>/test3.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>review</servlet-name>
+  	<servlet-class>web.Review</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>review</servlet-name>
+  	<url-pattern>/review.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>agreement</servlet-name>
+  	<servlet-class>web.Agreement</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>agreement</servlet-name>
+  	<url-pattern>/agreement.do</url-pattern>
+  </servlet-mapping>
+</web-app>

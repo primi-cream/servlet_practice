@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <div>[가장 좋아하는 과목 모두 선택하세요]</div>
+    <form
+      id="frm"
+      method="post"
+      action="http://172.30.1.41:8080/web/class_like.do"
+    >
+      <input type="checkbox" name="ck1" value="HTML&CSS" /> HTML&CSS <br />
+      <input type="checkbox" name="ck2" value="Javascript" />
+      Javascript<br />
+      <input type="checkbox" name="ck3" value="Java" /> Java<br />
+      <input type="checkbox" name="ck4" value="Ajax" /> Ajax<br />
+      <input type="checkbox" name="ck5" value="Database" /> Database<br />
+      <input type="radio" id="otherRadio" name="ra" value="other" /> 기타<br />
+      <div id="otherSubjectDiv" style="display: none">
+        과목명
+        <input type="text" name="other_box" id="other_box" value="" /><br />
+      </div>
+      <input type="button" name="bt" value="전송" onclick="sub()" /><br />
+    </form>
+  </body>
+  <script>
+    let lastRadioState = false;
+
+    // radio 체크 및 해제 & 이벤트함수가 아닌 addEventListener로 Event Handling
+    document
+      .getElementById("otherRadio")
+      .addEventListener("click", function () {
+        if (lastRadioState) {
+          this.checked = false;
+          otherck(false); // 체크박스 제어
+        } else {
+          this.checked = true;
+          otherck(true);
+        }
+        lastRadioState = this.checked;
+      });
+
+    // 체크박스 제어
+    function otherck(isChecked) {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]'); // type이 checkbox인 모든 input
+      // radio의 상태에 따라 체크박스 상태 변경 및 disable 조절
+      if (isChecked) {
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false; // 체크 해제
+          checkbox.disabled = true; // 비활성화
+        });
+        document.getElementById("otherSubjectDiv").style.display = "block"; // radio 선택 시 입력창 조절 (입력창 오픈)
+      } else {
+        checkboxes.forEach((checkbox) => {
+          checkbox.disabled = false;
+        });
+        document.getElementById("otherSubjectDiv").style.display = "none"; // 입력창 가리기
+      }
+    }
+    // 데이터 전송부
+    function sub() {
+      const form = document.getElementById("frm");
+      // 기타 체크 부분 확인
+      if (document.querySelector('input[name="ra"]').checked) {
+        var otherBox = document.getElementById("other_box").value; // 기타가 활성화 시 해당 값을 가져옴
+        // 값의 공백확인
+        if (otherBox.trim() === "") {
+          alert("기타 과목명을 입력하세요.");
+          return false;
+        } else {
+        	form.submit();	// 값보내기
+        }
+      }	else {
+    	  form.submit();	// 값보내기
+      }
+    }
+
+    // checkbox 상태에 따라 기타 check 상태 변경
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.addEventListener("click", () => {
+        if (checkbox.checked) {
+          const otherRadio = document.getElementById("otherRadio");
+          otherRadio.checked = false;
+          otherck(false);
+        }
+      });
+    });
+  </script>
+</html>

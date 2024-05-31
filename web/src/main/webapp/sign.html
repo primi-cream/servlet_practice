@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>간편회원가입</h1>
+	
+	<form id="f" method="post" action="http://172.30.1.46:8080/web/number.do">
+		<div><input type="text" id="number" name="number" /><button type="button" onclick="refresh()">새로고침</button></div>
+		<div><input type="text" id="number_check" name="number_check" placeholder="위의 보안코드 4자리 숫자를 입력하세요."/></div>
+		<div><input type="text" id="id"  placeholder="가입하실 아이디를 입력하세요."/></div>
+		<div><input type="password" id="pw" placeholder="패슷워드를 입력하세요."/></div>
+		<button type="button" onclick="sub()">회원가입</button>
+	</form>
+</body>
+<script>
+
+
+function ran(){
+	let secu = "";
+	for(let i=0; i<4; i++){
+		secu += Math.ceil(Math.random() * 9);
+	}
+	console.log(secu + "test");
+	return secu;
+}
+
+document.getElementById("number").value = ran();	
+
+
+function refresh(){
+	document.getElementById("number").value = ran();
+}
+
+
+function sub(){
+	if(f.number.value == f.number_check.value){
+		if(f.id.value != "" && f.pw.value != ""){
+			f.submit();
+		} else {
+			alert("아이디 및 패스워드를 입력해주세요");
+		}		
+	} else {
+		alert("보안코드가 맞지 않습니다.");
+	}
+}
+</script>
+</html>

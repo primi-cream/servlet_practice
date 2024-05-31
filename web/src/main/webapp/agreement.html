@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Agreement</title>
+</head>
+<body>
+<form id="frm" method="post" action="./agreement.do" onsubmit="return goback();">
+<input type="checkbox" name="all">전체선택<br>
+<input type="checkbox" name="agree" value="agree1_Y" required>개인회원 정보 동의함(필수)<br>
+<input type="checkbox" name="agree" value="agree2_Y" required>이용약관 동의함(필수)<br>
+<input type="checkbox" name="agree" value="agree3_Y">청소년 보호정책 동의함<br>
+<input type="checkbox" name="agree" value="agree4_Y">제3자 정보수집 동의함<br>
+<input type="submit" value="동의확인">
+</form>
+</body>
+<script>
+
+const all_checkbox = document.getElementsByName("all")[0].addEventListener("click", function(){
+	const all_check = document.getElementsByName("all")[0];
+	const checkboxes = document.querySelectorAll("input[type='checkbox']");
+	if(all_check.checked){
+		checkboxes.forEach((e)=>{e.checked = true;});	
+	} else {
+		checkboxes.forEach((e)=>{e.checked = false;});
+	}	
+})
+
+function goback(){
+	if(frm.agree[0].checked && frm.agree[1].checked){
+		frm.submit();
+	} else {
+		alert("필수 체크박스는 체크해주세요");
+	}
+}	
+</script>
+</html>

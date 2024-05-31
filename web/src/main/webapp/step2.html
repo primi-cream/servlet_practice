@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step2에 step1 값을 출력</title>
+</head>
+<body>
+<form id="frm" method="post" action="">
+<input type="hidden" name="sms" value="N">
+<input type="hidden" name="mail" value="N">
+<input type="hidden" name="kakao" value="N">
+고객명 : <input type="text" name="person" readonly="readonly"><br>
+SMS 수신여부: <span id="sms">N</span><br> 
+이벤트 수신여부: <span id="mail">N</span><br>
+카카오톡 수신여부: <span id="kakao">N</span><br>
+</form>
+</body>
+<script>
+var data = window.location.search;	// URL에 값 중 URI(파라미터) 값만 확인하는 함수
+var sp = data.split("&");	//split 해당 단어에 모든 기점으로 배열화가 되며 해당 단어는 삭제됨
+console.log(sp);
+var nm = sp[0].split("=");
+frm.person.value = decodeURI(nm[1]);	//한글일 경우 decodeURIComponent: js, decodeURI: es 를 이용해 출력
+if(sp.length > 1){
+	var f;
+	for(f=1;f<sp.length;f++){	// 첫번째 배열(0)은 고객명값이므로 이미 처리가 완료됨 그 외에 배열을 검토 
+		var arr = sp[f].split("=");
+		// 배열값 중 0번째를 기점으로 id에 활용을 하며, 1번째 데이터 값을 innerHTML로 변경
+		document.getElementById(arr[0]).innerHTML = arr[1];
+		document.getElementsByName(arr[0])[0].value = arr[1];
+	}	
+}
+// getELementsByName : name은 기본이 원시배열 형태를 구성함 예시) abc[0]
+
+//var obj = document.getElementsByName("sms");
+//obj[0].value = "Y";
+
+</script>
+</html>

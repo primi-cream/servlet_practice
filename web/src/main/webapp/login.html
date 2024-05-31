@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="frm" method="post" action="./loginok.do">
+<p>
+<label><input type="radio" name="part" value="P" checked onclick="mb_part(this.value)">일반회원</label>
+<label><input type="radio" name="part" value="C" checked onclick="mb_part(this.value)">사업자 회원</label>
+</p>
+<p>
+<input type="text" name="mid" placeholder="아이디를 입력하세요"> <br>
+<input type="password" name="mpass" placeholder="비밀번호를 입력하세요"> <br>
+<input type="text" style="diplay:none;" name="corpno" placeholder="사업자번호 10자리를 입력하세요" maxlength="10"> <br>
+</p>
+<input type="button" value="로그인" onclick="js_submit()">
+</form>
+</body>
+<script>
+var option = "";
+function mb_part(pt){
+	console.log(pt);
+	option = pt;
+	if(pt == "C"){
+		frm.corpno.style.display = "block";
+	} else {
+		frm.corpno.style.display = "none";
+	}
+}
+
+function js_submit(){	// login
+	if(frm.mid.value == ""){
+		alert("아이디를 입력하세요");
+	} else if(frm.mpass.value == ""){
+		alert("패스워드를 입력하세요");
+	} else {
+		// 전역변수의 값을 체크하여 사업자 또는 일반회원 확인한 후 전송
+		if(option == "C"){
+			if(frm.corpno.value == "" || frm.corpno.value.length < 10){
+				alert("사업자 번호 10자리를 입력하셔야 합니다.");
+			} else {
+				frm.submit();
+			}
+		} else {
+			frm.submit();
+		}
+	}
+}
+</script>
+</html>
+
+
