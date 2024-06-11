@@ -20,13 +20,34 @@
 <script>
 // 키보드 이벤트 핸들링
 function key1(a){	// keypress : 키보드를 입력시 기존에 있는 값을 가져오는 형태
+	var ascii = window.event.keyCode;	// 키보드로 입력된 값을 체크(ASCII)
+	if(ascii < 48 || ascii > 57){
+		alert("휴대폰 번호는 숫자만 입력 가능합니다.");
+		document.getElementById("mid").value = "";
+	}
 	console.log(a);
 }
 function key2(b){	// keyup : 키보드를 누른 후 키가 up이 되었을 때 값을 가져오는 형태
 	console.log(b);
 }
-function key3(c){	// keydown : 키를 누른 경우 해당 값을 가져오는 형태
-	console.log(c);
+
+function key3(c){	// keydown : 키를 누른 경우 해당 값을 가져오는 형태(특수키 및 숫자키 별도로 확인됨)
+	var ascii = window.event.keyCode;
+	console.log(ascii);
+	if(ascii == 116){
+		alert("새로고침은 사용하실 수 없습니다.");
+//		window.event.keyCode = 0;
+		event.returnValue = false;	// 강제 페이지 새로고침 정지
+	} else if(ascii == 13) {
+		alert("엔터키 작동 금지");
+		return false;
+	}
+	/*
+	if(ascii < 48 || ascii > 57){
+		alert("휴대폰 번호는 숫자만 입력 가능합니다.");
+		document.getElementById("mid3").value = "";
+	}
+	*/
 }
 // 마우스 이벤트 핸들링
 function abc(){

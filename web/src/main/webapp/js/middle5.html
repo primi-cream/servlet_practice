@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 중급</title>
+</head>
+<!-- jquery engine source -->
+<script src="./jquery.js"></script>
+<script>
+	/*
+	$(document).ready(function(){
+		alert("test");
+	});
+	*/
+	// jquery 안에 JS를 활용가능함
+	$(function(){
+//		var $a = "홍길동";
+//		var $result = $a + "님 환영합니다.";
+//		console.log($result);
+		$("#btn").click(function(){	// id handling
+			alert("클릭하였습니다.");
+		});
+	
+		$(".mb").click(function(){	// class handling
+			alert("회원가입...");
+		});
+	});
+	
+	
+</script>
+<body>
+<input type="button" value="회원가입" class="mb">
+<input type="button" value="jq클릭" id="btn">
+<input type="button" value="es클릭" id="btn2">
+</body>
+<script>
+//es
+document.querySelector("#btn2").addEventListener("click",function(){
+	alert("test2");
+});
+
+</script>
+</html>

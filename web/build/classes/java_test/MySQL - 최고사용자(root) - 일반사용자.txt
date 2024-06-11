@@ -1,0 +1,389 @@
+MySQL - 최고사용자(root) - 일반사용자
+
+- DB Hosting → root(X) → 일반사용자
+
+- DB Server → root(O) → 일반사용자 생성, 권한제공
+
+- Database Package
+	- 쇼핑몰, 회사홍보사이트, 인트라넷 각각의 DB로 설정
+	- 일반사용자를 각각 배치하게 됩니다.
+	- 1인 기준 사용자가 여러개의 Database 권한을 가질 수 있음
+	- 한개의 DB에 여러명의 일반사용자를 접근허용
+	- Version 5.1 or 5.5이상(MySQL 기준) 서로 다른 자료형 및 구조를 가지고 있음
+
+- Database에 외부접속 시 접속방식은 SSH Tool을 이용함 (key - ex.Amazon ec2)
+
+- Database에 외부접속 시 접속방식 SQL Developer 이용함(보안이 좋지않음)
+
+- Database에 외부접속 시 Telnet (X) 최악의 보안
+
+
+Database의 구조
+
+Linux → Demon으로 표현(설치프로그램)
+
+MySQL → Database → Table → Column → Data
+
+Database → Table → Column → Data
+
+Database 접속 Port(3306)
+	- (내부)Database 및 (외부)Database끼리 연결 시 Port가 다를 경우 접속불가
+	- Charset & Timestemp Setting 
+
+서로 다른 Database 끼리 복구가 되지않음(단, Convertor 존재로 가능은 함)
+
+
+mysql bin folder
+mysql -u root -p
+
+\status → Database 정보확인 (언어셋, 셋팅 방식, PORT, 가동시간, Version)
+UTF8, UTF-8, utf8mb4(characterset - 모두 다르므로 확인필요)
+
+UTF8 : 255 → 자료형(char) → varchar(클래스 자료형 765byte)
+utf8mb4 : 191 → 자료형(char) → varchar(1020byte)
+
+Server → 내부에서 접속할때의 언어셋
+db → DB를 볼떄의 언어셋
+Client → 외부에서 접속할때의 언어셋 
+
+언어셋 변경(Client characterset, Conn characterset ... )
+mysql> set names utf8mb4; → Query OK 확인 (일시적변경 - 재시작시 초기화)
+
+MySQL\MySQL Server 8.4 → my.ini or my.cnf → mysql 환경설정 (메모리 증가, Buffer로 백업, 복구, 데이터 삽입, 언어셋)
+→ buffer_pool_size(I/O), characterset, port 등 변경가능
+
+mysql 최적화
+
+
+명령어
+select database(); → 현재 사용하고 있는 데이터베이스 명을 출력
+select user(); → 현재 접속한 사용자의 아이디를 출력
+show datbases; → 현재 생성된 데이터베이스 리스트를 출력
+show tables; → 현재 데이터베이스에서 테이블 리스트를 출력
+show variables like '%dir'
+
+show full comlumns from 테이블명;
+
+create database shopping; → 신규 db 생성(shopping)
+create database erp;
+drop database shopping; → 해당 db 삭제
+drop table 테이블명; → 해당 테이블을 삭제
+user mysql → show tables; →select * from user;
+
+
+create : 생성
+drop : 삭제
+
+use shopping;
+
+[mysql - db]
+사용자 추가 5.5 이전
+insert into user(host,user,password) values('localhost','hong',password('a123456'));
+
+사용자 추가 5.5이후버전(5.5이상)
+create user 'hong'@'localhost' identified by 'a123456'; // Annotation - 구분, localhost - 접속환경
+
+외부 사용자 추가 방법 (외부 접속자 허용)
+create user '아이디'@'%' indentified by'비밀번호'; → % 여러 IP를 오픈하는 형태
+create user '아이디'@'172.30.1.41' indentified by'비밀번호'; → IP를 입력시 해당 ip만 접속가능
+
+추가된 사용자와 새롭게 만들어진 Database를 연결작업 (y는 column 갯수만큼)
+desc db;로 갯수확인
+insert into db values('localhost','생성한 DB','생성한 아이디','y','y',.....);
+
+외부 사용자에게 database를 추가하는 방식
+insert into db values('%','생성한 DB','생성한 아이디','y','y',.....);
+
+외부 사용자이지만 특정 ip에서 table 생성 및 데이터를 생성할 수 있는 방식
+insert into db values('172.30.1.41','생성한 DB','생성한 아이디','y','y',.....);
+
+※ 사용자 추가 및 Database 연결 설정이 모두 끝난 후 무조건 mysql을 restart해야함(하지 않으면 적용되지 않음)
+※ 일반사용자가 자신의 database를 삭제 또는 생성을 할수있습니다. 단, 새로운 database는 생성할 수 없습니다.
+desc user;
+desc db;
+
+hong → erp 권한
+insert into db values ('localhost','erp','hong','y','y','y','y','y','y','y','y','y','y','y','y','y','y','y','y','y','y','y');
+
+
+[mysql restart]
+cmd(MySQL\MySQL Server 8.4\bin) → mysqladmin -u root -p reload 
+
+create table member(
+mid char(10) not null,	//아이디
+mpass varchar(10) not null,	// 패스워드
+mname char(100) not null,	// 고객명
+memail varchar(100) null	// 이메일
+);
+
+create table member2(
+mid char(10) not null,
+mpass varchar(10) not null,
+mname char(100) not null,
+memail varchar(100) null,
+primary key(mid, memail)
+);
+
+
+desc member;
+
+insert into member2 (mid,mpass,mname,memail) values('hong','a1234','홍길동','hong@nate.com');
+
+insert into member (mid,mpass,mname,memail) values('hong','a1234','홍길동','hong@nate.com');
+
+insert into member (mid,mpass,mname,memail) values('kim','b1004','김유신', null);
+
+insert into member (mid,mpass,mname,memail) values('apink','10041004','에이핑크', '');
+
+select * from member;
+
+select * from member where mname='김유신';
+
+select * from 테이블명 where 컬러명 = '찾을데이터' → 테이블안에 있는 데이터를 검색
+
+select 컬럼명, 컬럼명 from 테이블명; → 해당 컬럼에 관련된 데이터만 출력
+
+delete from member;
+
+delete from member where mname='김유신';
+
+update member set memail='apink@gmail.com' where mid='apink';
+
+update member set memail=null;
+
+
+[사용자 삭제방법]
+delete from user where user='사용자 아이디'; → mysql 접속 사용자 삭제
+delete from db where user='사용자 아이디'; → 해당 DB에 사용자가 연결된 사항을 삭제
+
+[Table] - Column(필드)을 같이 생성해야만 정상 작동함
+desc(디스크) table명; → Column 및 데이터 잘형 확인이 가능함
+not null → 필수값
+null → 데이터 값(선택)
+
+[자료형]
+char(1~255) - 문자를 기반으로 생성하며, 단 특수문자가 미적용될 수 있음
+varchar(1~255) - byte문자 기반 특수문자 및 암호화 적용
+int - 정수형
+
+[select 문법] - 검색, 리스트 출력
+select * from 테이블명; → 해당 테이블에 데이터를 확인하는 명령어
+select count(*) from 테이블명; → 해당 테이블에 몇개의 데이터가 있는지 확인
+select count(*) as total from 테이블명; → as(Alias 약어) 를 이용하여 가상의 컬럼명을 사용함
+select * from 테이블명 where 컬럼 = '데이터' and 컬럼 = '데이터' → 2가지 조건이 모두 만족
+select * from 테이블명 where 컬럼 = '데이터' or 컬럼 = '데이터' → 2가지 조건 중 하나가 만족
+
+select * from 테이블명 order by 컬럼명 desc or asc;
+desc : 내림차순
+asc : 오름차순
+
+[해당 단어를 기점으로 데이터 검색]
+select * from 테이블명 where 컬럼명 like '%단어'; → 해당 단어로 끝나는 데이터
+select * from 테이블명 where 컬럼명 like '단어%'; → 해당 단어로 시작하는 데이터
+select * from 테이블명 where 컬럼명 like '%단어%'; → 해당 단어 포함하는 데이터
+or 로 조건추가 가능
+
+[join 문법] - 2개 이상의 테이블에 대한 값을 비교하여 출력하는 역할(double loop)
+select 테이블컬럼명,테이블컬럼명 from 테이블1 as 별명 join 테이블2 as 별명 where 테이블 조건;
+예시) 
+select a.mid,a.mname, b.tel from mb as a join info as b where a.mid = b.mid;
+
+[합계, 평균값, 최소, 최대값을 계산하는 문법]
+select sum(컬럼명) from 테이블명; → 총 합계 금액을 출력 (단, 문자일 경우 오류가 발생할 수 있음)
+
+select avg(컬럼명) from 테이블명; → 평균을 출력하는 문법(단, 문자일 경우 오류가 발생할 수 있음)
+
+select max(컬럼명) from 테이블명; 
+select min(컬럼명) from 테이블명; 
+
+[데이터의 범위 갯수 만큼 출력하는 방법]
+select * from 테이블명 limit 배열번호,출력갯수;
+
+[집계함수 명령어] - 특정 그룹에 한하여 카운팅 및 중복값 제거
+select 컬럼명, count(컬럼명) from 테이블명 group by 컬럼명
+※ 주의사항 group에 사용한 컬럼명으로 핸들링 해야함
+
+1개 이상 group by 사용 시 
+ex) select b.mname, a.mid, count(a.mid) as count from basket as a join member as b where a.mid=b.mid group by a.mid, b.mname;
+select b.mname, a.mid, count(a.mid) as count from basket as a join member as b where a.mid=b.mid group by a.mid, b.mname order by b.mname desc limit 0,3;
+
+[insert 문법] - 데이터 삽입
+insert into 테이블명 (컬러명, 컬럼명) values ('데이터값','데이터값');
+* 주의사항 컬럼명 갯수에 맞춰 데이터 갯수가 입력되어야 함
+단, Null일 경우 '' 또는 null로 java에서 핸들링을 할 수 있음
+
+[delete 문법] - 삭제
+delete from 테이블명; → 테이블에 있는 모든 데이터를 삭제
+delete from 테이블명 where 컬럼명='데이터값'; → 해당 데이터만 삭제
+
+[update 문법] - 수정
+update 테이블명 set 컬럼명='변경데이터'; → (전체 컬럼에 대한 모든 데이터 변경)
+update 테이블명 set 컬럼명='변경데이터' where 컬러명='데이터';
+해당 데이터 컬럼에 대한 값을 변경하게 됩니다.
+
+[alter 문법] - 컬럼을 수정,추가,삭제 등 할 수 있는 명령어
+컬럼 추가 방법 - 테이블 기준 가장 아래에 컬럼이 추가됨
+alter table 테이블명 add 추가할컬럼명 자료형 null 또는 not null;
+
+컬럼 추가방법2 - 테이블 기준 자신이 원하는 컬럼위치에 추가
+alter table 테이블명 add 추가할컬럼명 자료형 null or not null after 기존컬럼명;
+
+
+컬럼 속성 변경 - 자료형, 자료형 범위를 조정할 때 사용
+alter table 테이블명 modify 컬럼명 자료형 not null or null;
+
+컬럼 삭제 - 컬럼 삭제시 해당 데이터 모두 삭제됩니다.
+alter table 테이블명 drop 컬럼명;
+
+컬럼명 및 자료형 변경
+alter table 테이블명 change 기존컬럼명 변경할 컬럼명 자료형 null or not null;
+
+테이블명 변경
+8.x or 10.x
+rename table 변경전 테이블 to 신규이름테이블 
+
+all version
+alter table 변경전 테이블 rename 신규이름 테이블;
+
+[database에 있는 테이블을 다른 database로 이동]
+rename 데이터베이스명.테이블명 to 이동할 데이터베이스명.테이블명;
+
+[primary key] - 중복되지 않은 데이터를 선정할 때 사용하는 key
+사용방법 : 테이블 생성 시 primary key(컬럼명,컬럼명)
+※ 다중키로 primary key로 설정시 auto_increment가 기준으로 잡히며, 여러개의 다중키를 사용하더라도 단 한개의 컬럼 데이터가 다를 경우 insert가 발생이 됩니다.
+
+[unique key] - primary key에서 절대 중복되지 말아야 하는 데이터 컬럼을 선정함
+단, primry key에 
+
+
+[Table 자료형]
+auto_increment : 데이터가 추가시 +1씩 증가 단, auto_increment 무조건 primry key
+char - 문자
+varchar - byte문자
+text - 많은 내용의 문자를 받을 경우
+tinytext(256byte) > text(65000byte) > mediumtext(160000byte) > longtext(4GB)
+int - 숫자
+tinyint (1~127) > smallint(6만) > int(40억) > bigint(1조 8천억)
+
+default로 날짜 및 시간에 대한 규칙성을 적용필요 (default '0001-01-01' or '0001-01/01')
+date - 년월일
+time - 시분초
+datetime - 년월일 시분초
+enum - 컬럼에 옵션을 입력시킨 후 해당 옵션 외에는 값이 저장되지 않도록 하는 자료형
+
+timestamp - SQL 서버의 시간을 가져와서 자동으로 현재 시간을 적용시키는 자료형(default current_timestamp) → insert 시 now()를 이용함
+
+[MySQL & MariDB] - 백업
+mysqldump -u 사용자 -p 데이터베이스명 > 위치 (ex. D:\데이터베이스이름.sql)
+
+※해당 데이터베이스 중 특정 테이블만 백업하는 방법
+mysqldump -u 사용자 -p 데이터베이스명 테이블명 > D:\테이블명.sql
+
+
+[MySQL & MariDB] - 복구 : 복구 database명이 다른 이름이라도 복구가능함
+mysql -u 사용자 -p 데이터베이스명 < D:\데이터베이스이름.sql
+
+※해당 데이터베이스 중 특정 테이블만 복구하는 방법
+mysql -u 사용자 -p 데이터베이스명 > D:\테이블이름.sql
+
+
+join → 2개 이상의 테이블을 검토하여 하나의 테이블로 출력
+
+innerjoin → 교집합
+outerjoin → 교집합 외의 집합
+leftjoin → 1개의 집합 (왼쪽 기준)
+rightjoin → 1개의 집합(오른쪽 기준)
+fullouterjoin → 전체 테이블을 출력하는 집합(합집합)
+
+
+[테이블 복제]
+create table 사본테이블명 like 원본테이블명; → 테이블만 복제
+insert into 사본테이블명 select * from 원본테이블명; → 데이터를 복제 
+create table 사본테이블명 select * from 원본테이블명; → 데이터 및 테이블을 복제(각종 key, auto_increment 복제 안됨) 
+
+
+[View Table]
+CREATE VIEW 테이블명 as select문법; → 가상 테이블 생성
+DROP VIEW 테이블명; → 가상 테이블 삭제
+
+※주의사항
+1. INSERT, DELETE 사용하지 못함
+2. UPDATE 사용시 본 테이블에도 데이터가 변경됨
+3. SELECT VIEW 테이블시 오류가 발생할 경우 해당 VIEW 삭제 후 다음과 같이 적용
+CREATE VIEW 뷰테이블명 AS (SELECT 필드명 FROM 테이블 AS 별칭....);
+
+
+
+사용자 추가 & 해당 사용자에게 DB 권한
+create user 'hong'@'localhost' identifued by 'a1234';
+update user set host='localhost' where user='아이디';
+
+insert into db values ('localhost','db명','사용자','y','y',...);
+update db set host='localhost' where user = '아이디';
+
+web에서의 localhost는 IDE의 독립된 것을 가르키므로 localhost 시 접속 및 권한이 제대로 주어지지 않음.
+
+
+
+
+
+[각종 key 상세 부분]
+PRIMARY KEY > UNIQUE > MULTI > FOREIGN
+
+PRIMARY KEY : AUTO_INCREMENT 사용 시 무조건 KEY로 등록되어야 함
+※ key를 한개 이상 등록 시 OR 형태로 구분되어 집니다.
+
+UNIQUE 그룹명 : 중복되지 않는 값
+1. 괄호에 여러개의 컬럼명을 입력하여 MULTI KEY 형태로 구성하는 방식 (OR)
+2. 별도의 UNIQUE 그룹을 이용하여 중복값을 체크하는 방식
+
+SHOW CREATE TABLE 테이블명;
+SHOW INDEX FROM 테이블명;
+show triggers;
+DROP TRIGGER remove_user;
+
+DELIMITER $$
+CREATE TRIGGER remove_user
+AFTER DELETE
+ON mb
+FOR EACH ROW
+BEGIN 
+INSERT INTO dropmb (idx,id,name,email) VALUES ('0',old.id,old.name,old.email);
+END $$
+DELIMITER;
+
+
+
+FOREIGN KEY : 부모테이블과 자식 테이블을 연결하는 KEY를 말함
+1. 부모테이블을 제작 후 자식 테이블을 생성 시 PRIMARY KEY 또는 UNIQUE 중에서 연결 하고자 하는 KEY를 REFERENCES로 연결 사용함
+2. 자식 테이블이 연결되어 있을 경우 부모 테이블을 삭제하지 못함
+3. 단, 컬럼(필드)명 동일하게 구성하지는 않습니다. 
+4. 데이터 또한 자식 테이블에 있는 데이터를 먼저 삭제 후 부모 테이블의 데이터를 삭제할 수 있음
+
+
+[TRIGGER] - EVENT가 발생시 (INSERT, UPDATE, DELETE) 사용 시 자동으로 문법이 실행되는 구조
+컬럼명 TRIGGER 선언문 (AFTER 기준)
+old - UPDATE, DELETE 
+new - INSERT, UPDATE
+
+[트리거 전체 구조현황]
+DELIMITER 별명명칭
+CREATE TRIGGER 가상의 트리거 이름생성
+AFTER 명령어 문법 (UPDATE, INSERT, DELETE) 중 하나
+ON 본테이블
+FOR EACH ROW
+BEGIN
+자동으로 실행될 SQL 명령어 구문 
+예시) INSERT INTO dropmb (idx,id,name,email) VALUES ('0',old.id,old.name,old.email);
+END 별명명칭
+DELIMITER;
+
+
+※ SELECT 문법은 MYSQL에서 TRIGGER로 구성하기 힘듬. 단, MSSQL이나 Oracle에서는 정상 작동 됩니다. 
+
+
+set - enum과 동일한 사항은 있으나, 해당 옵션을 여러개 값을 저장되도록 하는 기능이 있습니다.
+
+signed - 기본 default 자료형 ex) (-25621~25621)
+unsigned - 정수기본 ex) (1~51221)
+
