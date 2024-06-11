@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 중급 - </title>
+</head>
+<style>
+.box{
+	width:800px;
+	height:100px;
+}
+.box > span {
+	display: block;
+	width: 30px;
+	height: 30px;
+}
+
+.box > span:nth-of-type(1){
+	background-color:orange;
+}
+
+.box > span:nth-of-type(2){
+	background-color:blue;
+}
+
+</style>
+<body>
+<div class="box" id="box">
+<span>1</span>
+<span>2</span>
+</div>
+<input type="button" value="자식노드 확인" onclick="bbb()">
+<input type="button" value="변형1" onclick="abc()">
+</body>
+<script>
+function bbb(){
+//	childNodes: 빈 공간이 발생 시 text라는 빈공간 노드가 생성됨.	
+//	var node = document.getElementById("box").childNodes;
+
+// children : 태그 기점으로 자식 노드를 확인함
+	var node = document.getElementById("box").children;
+	console.log(node);
+}
+
+function abc(){
+	var node = document.getElementById("box").children;
+	/*
+	node[0].style.backgroundColor = "red";
+	node[1].style.display = "none";
+	*/
+//  transform : 애니메이션 형태의 최종 위치를 설정 (가로,세로,회전,모양변경)
+//	transition : 애니메이션 시간을 설정하는 옵션	
+//	trans
+	node[1].style.transform = "translate(700px,0)";
+	node[1].style.borderRadius = "100%";
+	node[1].style.transition = "2s";
+}
+</script>
+</html>

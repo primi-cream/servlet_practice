@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 - 시간함수</title>
+</head>
+<style>
+.box{
+	width:100px;
+	height:100px;
+	border:1px solid black;
+}
+</style>
+<body>
+<div id="box" class="box"></div>
+<input type="button" value="시작" onclick="aa()">
+<input type="button" value="종료" onclick="bb()">
+
+<div id="box2" class="box"></div>
+<input type="button" value="시작" onclick="cc()">
+<input type="button" value="종료" onclick="dd()">
+</body>
+<script>
+//setTimeout: 해당 시간에 한번만 호출하여 사용하는 시간함수
+var no = 0;	// 전역변수
+var timer;	// 시간함수를 컨트롤 하기 위한 변수
+
+function aa(){
+	document.getElementById("box").innerText = no;
+	no++;
+	timer = setTimeout(aa,1000);	//5초 후에 aa라는 함수를 실행
+}
+
+function bb(){
+	clearTimeout(timer);	
+}
+
+// setInterval: 해당 시간에 맞춰서 지속적으로 호출
+// ※ 함수안에 사용시 반복되면서 지속적으로 시간함수가 늘어남
+var n = 0;
+var timer2;
+
+function cc(){
+	document.getElementById("box2").innerText = n;
+	n++;
+}
+	timer2 = setInterval(cc, 1000);
+function dd(){
+	clearInterval(timer2);
+}
+</script>
+</html>

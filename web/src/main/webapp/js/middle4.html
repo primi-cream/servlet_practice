@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 중급 - 여러가지 이벤트 핸들링</title>
+</head>
+<style>
+.box{
+	width:150px;
+	height:150px;
+	background-color:orange;
+}
+</style>
+<body>
+<div class="box" id="box" onclick="abc()" onmouseout="bbb()" onmouseover="ccc()"></div>
+<input type="text" id="mid" onkeypress="key1(this.value)"><br>
+<input type="text" id="mid2" onkeyup="key2(this.value)"><br>
+<input type="text" id="mid3" onkeydown="key3(this.value)"><br>
+</body>
+<script>
+// 키보드 이벤트 핸들링
+function key1(a){	// keypress : 키보드를 입력시 기존에 있는 값을 가져오는 형태
+	console.log(a);
+}
+function key2(b){	// keyup : 키보드를 누른 후 키가 up이 되었을 때 값을 가져오는 형태
+	console.log(b);
+}
+function key3(c){	// keydown : 키를 누른 경우 해당 값을 가져오는 형태
+	console.log(c);
+}
+// 마우스 이벤트 핸들링
+function abc(){
+	document.getElementById("box").style.backgroundColor="blue";
+}
+
+function bbb(){
+	document.getElementById("box").style.backgroundColor="black";
+}
+
+function ccc(){
+	document.getElementById("box").style.backgroundColor="hotpink";
+}
+</script>
+</html>

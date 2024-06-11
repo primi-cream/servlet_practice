@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 중급 - 디스크 핸들링</title>
+</head>
+<style>
+.disc{
+	list-style:none;
+	height: 30px;
+	margin:0;
+	padding:0;
+}
+
+.disc > li {
+	width: 30px;
+	height: 30px;
+	background-color:black;
+	border-radius:100%;
+	float:left;
+}
+</style>
+<body>
+<ul class="disc" id="disc">
+	<li style="background-color:red;"></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<input type="button" value="이전" onclick="prev()">
+<input type="button" value="다음" onclick="next()">
+</body>
+<script>
+var node = document.getElementById("disc").children;
+console.log(node.length);	// 자식노드 갯수 파악
+var n = 0;
+var timer; // 시간함수 적용
+
+// 자동으로 디스크가 움직이는 시간함수(setTimeout)
+function go_disc(){
+	for(var f = 0; f < node.length; f++){
+		node[f].style.backgroundColor = "black";
+	}
+	n++;
+	
+	if(n >= node.length)
+		n = 0;
+	
+	node[n].style.backgroundColor = "red";
+	timer = setTimeout(go_disc,100);	// 0.1초 마다 재귀함수를 적용하여 실행
+}
+
+timer = setTimeout(go_disc,100);	// 최초 실행시 0.1초 후 해당 함수 실행
+
+
+
+
+function next(){
+	// 전체 자식 노드 배경색을 검정색으로 변화
+	for(var f = 0; f < node.length; f++){
+		node[f].style.backgroundColor = "black";
+	}
+	n++;
+	if(n >= node.length)
+		n = 0;
+	// 해당 자식 노드만 빨간색으로 변화
+	node[n].style.backgroundColor = "red";
+}
+function prev(){
+	for(var f = 0; f < node.length; f++){
+		node[f].style.backgroundColor = "black";
+	}
+	n--;
+	
+	if(n < 0)
+		n = node.length - 1;
+	
+	node[n].style.backgroundColor = "red";
+}
+</script>
+</html>
