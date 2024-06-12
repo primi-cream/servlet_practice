@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 노드 응용편</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+$(()=>{
+	let $arr = ["냉장고","다리미","에어프라이어"];
+	let $arr2 = ["1800000","275000","198000"];
+	let $a = 0;
+	while($a < $arr.length){
+		$("body").append("<div>" + $arr[$a]+"-"+$arr2[$a] + "</div>");	
+		$a++;
+	}	
+});
+</script>
+<body>
+
+</body>
+</html>

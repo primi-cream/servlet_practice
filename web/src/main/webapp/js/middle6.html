@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 및 자바스크립트 연계</title>
+</head>
+<script src="./jquery.js"></script>
+<script>
+// jquery 상단 코드를 이용함
+// jquery에서 외부 js 함수를 호출할 수 있음. 단, JS함수에서 jquery 함수를 호출하지는 못함. (JS-부모,JQ-자식과 같은 관계로 이해)
+/*
+$(function(){
+	
+});
+*/
+$(()=>{
+	function abcd(){	// javascript 함수
+		alert("test1");
+	}
+	//abc();	// 즉시 실행
+	$("#btn").click(function(){	// jquery event handling function
+		abc();	// jquery -> js 함수를 찾아서 실행 단, 동일한 이름이 있을 경우 jquery내부 함수가 우선실행
+	});
+	
+//	$("#btn2").on("click",function(){
+//		alert("test111");
+//	});
+	
+	$("#btn2").click(function(){
+		// var $id = $("#mid").val();	// 입력값을(value) 가져옴
+		// $("#mid").val("hong");	// 입력값에 값 적용하는 방식 인자값 형태
+		if($("#mid").val() == ""){
+			alert("아이디를 입력하세요.");
+		} else {
+			location.href = "http://naver.com";
+		}
+		/*
+		if(f.mid.value==""){
+			alert("아이디를 입력하세요");
+		}
+		*/
+	});
+});
+</script>
+<body>
+<input type="button" value="클릭" onclick="abc()">
+<input type="button" value="jquery클릭" id="btn">
+<br><br>
+<form id="f">
+<input type="text" id="mid" name="user">
+<input type="button" value="중복체크" id="btn2">
+</form>
+</body>
+<script>
+// javascript
+function abc(){
+	alert("test2");	
+	// abdc();
+}
+</script>
+</html>

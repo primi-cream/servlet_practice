@@ -387,3 +387,42 @@ set - enum과 동일한 사항은 있으나, 해당 옵션을 여러개 값을 �
 signed - 기본 default 자료형 ex) (-25621~25621)
 unsigned - 정수기본 ex) (1~51221)
 
+
+
+
+유저 패스워드 변경
+mariaDB 8.0 version 이상 
+alter user 'apink'@'%' identified with mysql_native_password by 'a1004';
+
+mysql v5.1 이하
+update user set password=password('변경패스워드') where user='아이디';
+
+mysql v5.5 이상 ~ v5,7이하
+select * from user where user='apink';  authentication_string 확인
+
+> update user set authentication_string=password('a1004') where user='apink'; (X)
+
+alter user 'apink'@'%' identified by 'a1004'; (O)
+
+alter user '아이디'@'%' identified by '변경패스워드';
+
+mysql v5.7 ~ v8.0이상
+update user set authentication_string = password('변경패스워드') where user='사용자';
+
+
+
+시험문제 예시
+http://mekeyace.dothome.co.kr/java_exam.txt
+http://mekeyace.dothome.co.kr/stock_fc.zip
+http://mekeyace.dothome.co.kr/palette.zip
+
+select b.mname as 고객명,a.mid as 아이디,c.product_name as 상품명,a.product_code as 상품코드,a.amount as 상품수량 from basket as a join member as b join product as c where a.mid=b.mid and a.product_code=c.product_code;
+
+
+
+pay(mid,mname,product_code) product(product_code,pnm)
+
+VIEW : mid, mname,product_code,procut_name
+
+SELECT a.mid, a.mname, a.product_code, b.product_name FROM pay AS a JOIN product as b WHERE a.product_code=b.product_code;
+

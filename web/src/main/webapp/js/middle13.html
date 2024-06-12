@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery 배열</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+var data = [1,2,3,4,5,6];	// 데이터값 전역변수
+
+$(()=>{
+	$("#btn").click(function(){
+		var $ea = data.length;	// 배열 갯수
+		var $w = 0;
+		while($w < $ea){
+			$("#ulcss").append("<li>"+data[$w]+"</li>");
+			$w++;
+		}
+	});
+});
+</script>
+
+<body>
+<ul id="ulcss">
+
+</ul>
+
+<input type="button" value="데이터 로드" id="btn">
+</body>
+</html>

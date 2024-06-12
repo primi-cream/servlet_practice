@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery로 각각의 오브젝트 핸들링 방식</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+$(function(){
+	$("#btn").click(function(){
+		if($("#mid").val() == ""){
+			alert("아이디를 입력하세요");
+			$("#mid").focus();	// 입력값에 자동으로 커서가 발동되도록 함
+		} else if($("#mpw").val()==""){
+			alert("패스워드를 입력하세요");
+			$("#mpw").focus();
+		} else {
+			//frm.submit();
+			// return; submit만 가능
+			$("$frm").submit();
+		}
+	});
+	
+	// submit 사용방법
+	$("#frm").submit(function(){
+		if($("#mid").val() == ""){
+			alert("아이디를 입력하세요");
+			$("#mid").focus();	
+			return false;
+		} else if($("#mpw").val()==""){
+			alert("패스워드를 입력하세요");
+			$("#mpw").focus();
+			return false;
+		} else {
+			// $("#frm").submit();
+			// return;
+			return true;
+		}
+	});
+});
+</script>
+<body>
+<form id="frm" method="get" action="./middle6.html"> <!-- form id를 활용(submit) -->
+아이디 : <input type="text" name="id" id="mid"><br>
+패스워드 : <input type="password" name="pw" id="mpw"><br>
+<!-- <input type="button" value="로그인" id="btn"> -->
+<input type="submit" value="로그인">	<!-- submit id 사용하지 않음 -->
+</form>
+</body>
+</html>

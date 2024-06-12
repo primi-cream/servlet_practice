@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=Edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>append를 이용한 채팅 프로그램</title>
+   <style>
+        .chat{
+           width: 400px; height: 400px;
+           border:1px solid black;  
+           overflow-y: auto;    
+           overflow-x: hidden;
+        }
+        .view { width: inherit; height: auto;
+        list-style: none; margin: 0; padding: 0;
+        }
+        .view > li {
+            width: inherit; height: 30px;
+            color: black;
+            font-size: 12px;
+            line-height: 30px;
+        }
+    </style>
+<script src="./jquery.js"></script>
+</head>
+<script>
+$(()=>{
+	$("#frm").submit(function(){
+		var $nm = $("#mname").attr("user-name");	// 채팅 사용자 이름
+		var $msg = $("#chat_text").val();	// 채팅내용
+		if($msg == ""){	// 채팅내용 미입력시
+			alert("채팅내용을 입력하셔야 합니다.");
+			$("#chat_text").focus();
+		} else {	// 입력되었을 경우
+			$("#view").append("<li>" + $nm + " : " + $msg + "</li>");	// 사용자가 입력한 값을 view 출력
+			$("#chat_text").val("");	// 입력화 초기화
+		}
+		return false;
+	});
+});
+</script>
+<body>
+<form id="frm" method="post" action="./chat.html">
+<em user-name="홍길동" id="mname"></em>
+<div class="chat">
+    <p>건전한 채팅문화를 선도합니다.</p>
+    <!-- 사용자가 입력한 채팅값을 출력하는 태그 -->
+    <ul class="view" id="view">
+    </ul>
+</div>
+<br>
+<input type="text" id="chat_text">
+<button type="submit">전송</button>
+</form>
+</body>
+</html>

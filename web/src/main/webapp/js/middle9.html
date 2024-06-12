@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원약관 응용편(cafe24.com)</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+// attr을 사용시 속성값에 대한 상황을 확인 해야만 정확한 핸들링을 할 수 있게됩니다. (코드 내부 - 태그)
+// prop : property (메모리 상주 관련 속성)
+$(()=>{
+	$("#all").click(function(){
+		if($("#all").is(":checked")){
+			$(".agree").prop("checked",true);
+		} else {
+			$(".agree").prop("checked",false);
+		}
+	});
+});
+</script>
+<body>
+<input type="checkbox" id="all">전체동의 합니다.<br>
+<input type="checkbox" class="agree">[필수]본인 확인 서비스 약관 동의 <br>
+<input type="checkbox" class="agree">[필수]통신사 이용 약관 동의 <br>
+<input type="checkbox" class="agree">[필수]통신사/인증사 개인정보 공유 동의 <br>
+<input type="checkbox" class="agree">[필수]고유식별 정보처리에 대한 동의 <br>
+</body>
+</html>

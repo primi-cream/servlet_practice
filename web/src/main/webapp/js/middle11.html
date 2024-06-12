@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery를 이용한 노드형태의 오브젝트 생성방법</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+$(()=>{
+	// 부모태그 기준으로 제일 아래에 자식 노드가 생성됩니다.
+	$("#btn1").click(function(){
+		$("#box").append("<span>메뉴6</span><br>");
+	});
+	// 부모태그 기준으로 제일 위에 자식 노드가 생성됩니다.
+	$("#btn2").click(function(){
+		$("#box").prepend("<span>메뉴0</span><br>");
+	});
+	// 자식노드 기준으로 지정 노드 이전에 생성됩니다.
+	$("#btn3").click(function(){
+		$("<span>메뉴0</span><br>").insertBefore("#box > span:eq(2)");
+	});
+	// 자식노드 기준으로 지정 노드 이후에 생성됩니다.
+	$("#btn4").click(function(){
+		$("<span>메뉴0</span><br>").insertAfter("#box > span:eq(2)");
+	});
+	
+	$("#btn5").click(function(){
+		var $ea = $("#box > span").length;	//node 갯수 파악
+		console.log($ea);
+	});
+});
+</script>
+<body>
+<div id="box">
+<span>메뉴1</span><br>
+<span>메뉴2</span><br>
+<span>메뉴3</span><br>
+<span>메뉴4</span><br>
+<span>메뉴5</span><br>
+</div>
+<input type="button" value="노드추가" id="btn1">
+<input type="button" value="노드추가2" id="btn2">
+<input type="button" value="노드추가3" id="btn3">
+<input type="button" value="노드추가4" id="btn4">
+<input type="button" value="노드확인" id="btn5">
+</body>
+</html>

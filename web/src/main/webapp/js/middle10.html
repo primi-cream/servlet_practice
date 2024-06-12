@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq를 이용한 메뉴 오브젝트 핸들링 방법(node)</title>
+<script src="./jquery.js"></script>
+</head>
+<script>
+$(()=>{
+	$("#ulcss > li").click(function(){	// 부모태그기준 > 자식태그를 클릭시 (js:children)
+		var $node = String($(this).index());	// index => 자식태그의 배열번호를 체크해서 가져오는 함수 / 문자열로 바꾸고 싶은 경우
+		switch($node){
+		case "0":
+			location.href = "http://naver.com";
+			break;
+		case 1:
+			location.href = "http://google.com";
+			break;
+		}
+	});
+	// 고객센터 메뉴만 이동 eq(node번호)
+	/*
+	$("#ulcss > li").eq(2).click(function(){
+		location.href="http://google.com";
+	});
+	*/
+	
+	//노드 삭제
+	$("#olcss > li").click(function(){
+		var $node = $(this).index();	//노드번호
+	//	console.log($node);
+	//	$(this).eq(0).hide();	// hide() -> display:none;
+		console.log($(this).eq(0));
+	//	$(this).eq(0).remove();	// 자식태그를 실제 삭제 node를 재설정 이 경우 this -> li 이므로 0으로 설정 
+		$("#olcss > li").eq($node).remove();
+	});
+	
+	// 데이터 생성 (DOM:js innerHTML,innerText), Jquery (html(),text())
+	// ex) Langauge 변경 시 배열 형태로 text 한번에 변환 -> 별도의 page X
+	$("#btn").click(function(){
+		/*
+		var $html = "<li>신규메뉴 생성완료</li>" + "<li>신규메뉴 생성완료2</li>";
+	//	$html += "<li>신규메뉴 생성완료2</li>";
+		$("#olcss").html($html);
+	//	$("#olcss").text($html);
+		*/
+		$("#olcss > li").eq(3).text("메뉴4");
+	});
+	
+	
+});
+</script>
+<body>
+<ul id="ulcss">
+<li>신규상품</li>
+<li>이벤트 상품</li>
+<li>고객센터</li>
+<li>FAQ</li>
+</ul>
+<br><br><br>
+<ol id="olcss">
+<li>menu1</li>
+<li>menu2</li>
+<li>menu3</li>
+<li>menu4</li>
+<li>menu5</li>
+</ol>
+<input type="button" value="데이터 추가" id="btn">
+</body>
+</html>

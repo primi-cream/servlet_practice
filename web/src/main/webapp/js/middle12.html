@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery - 다중 이벤트 핸들링</title>
+<script src="./jquery.js"></script>
+</head>
+<style>
+.box1{
+	width:100px;
+	height:100px;
+	background-color: orange;
+}
+
+.box1 > p {
+	width:inherit;
+	height:30px;
+	border:1px solid blue;
+}
+</style>
+<script>
+/*
+ mouseover + mouseout	 
+ mouseenter + mouseleave
+ 
+ mouseover : 마우스 포인터가 해당 오브젝트에 있을 때 (자식 노드와 별개로 작동)
+ mouseout : 마우스 포인터가 해당 오브젝트 밖에 있을 경우 (자식 노드와 별개로 작동)
+ mouseenter : 부모 오브젝트와 자식 오브젝트를 한가지로 인식 (오브젝트 포인트가 안에)
+ mouseleave : 부모 오즈젝트와 자식 오브젝트를 한가지로 인식 (오브젝트 포인트가 밖에)
+ */
+ // keypress, keyup, keydown : js와 동일한 핸들링 방식
+	$(()=>{
+	var $a = 0;	
+	var $b = 0;	
+		$("#box1").mouseover(function(){
+			$a++;
+			$("#box1 > p").text($a);
+		});
+		
+		$("#box1").mouseout(function(){
+			$a++;
+			$("#box1 > p").text($a);
+		});
+		
+		$("#box2").mouseenter(function(){
+			$b++;
+			$("#box2 > p").text($b);
+		});
+		
+		$("#box2").mouseleave(function(){
+			$b++;
+			$("#box2 > p").text($b);
+		});
+	});
+</script>
+<body>
+<div class="box1" id="box1">
+<p>1박스 입니다.</p>
+</div>
+<div class="box1" id="box2">
+<p>2박스 입니다.</p>
+</div>
+</body>
+</html>
