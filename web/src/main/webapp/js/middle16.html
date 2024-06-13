@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=Edge, chrome=1">
+    <title>Jquery 배열 FAQ 만들기</title>
+    <script src="./jquery.js"></script>
+    <script src="./middle16.js?v=1"></script>
+    <style>
+        .ulcss { width: 1000px; height: auto; 
+        list-style: none;
+        margin: 0; padding: 0;
+        }
+        .ulcss > li { width: 100%; height:auto; }
+        .ulcss > li:nth-child(even){
+            background-color: skyblue;
+        }
+        .ulcss > li > .q { cursor: pointer; width: 100%; height: 30px; border-bottom: 1px dashed #000;  }
+        .ulcss > li > .a { width: 100%; height: 150px; background-color: pink; 
+        display: none;
+        }
+        .s1 { width: 100%; height: 30px;
+        display: block; line-height: 30px;
+        font-size: 13px;
+        }
+    </style>
+</head>
+<!-- FAQ(관리자만) 및 1:1 게시판(댓글) 형태가 동일한가? -->
+<body>
+<p>자주 묻는 질문 (FAQ)</p>
+<ul class="ulcss" id="ulcss">
+<!-- 
+	<li>
+        <div class="q">
+          <span class="s1">Q. [결제오류] 삼성카드 오류발생!!</span>
+        </div>
+        <div class="a">
+            A. 삼성카드는 APP에서 QR로 인증을 완료 하신 고객님에 한해서만 결제가 진행 됩니다.
+        </div>
+    </li>
+-->
+ 
+</ul>
+</body>
+</html>

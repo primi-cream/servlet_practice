@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-compatible" content="IE=Edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이벤트 룰렛 포인트 페이백(모바일)</title>
+<link rel="stylesheet" type="text/css" href="./css/default.css?v=0">
+<link rel="stylesheet" type="text/css" href="./css/mroule.css?v=0">
+<script src="./jquery.js"></script>
+</head>
+<body>
+<form id="frm">
+<!-- 최종결과 backend로 전달 -->
+<input type="hidden" name="result" id="result" value="">
+<input type="hidden" name="mname" value="홍길동">
+<input type="hidden" name="mid" value="hong">
+    <section class="outline" id="outline">   
+        <div class="roule_bk" id="roule_bk">
+        <img src="./image/rullet_back.png">
+        </div>
+        <div class="gamepan">
+        <span class="gamepin"><img src="./image/rullet_pin.png"></span>
+        <span class="gamebtn" id="gamebtn">
+		<img src="./image/rullet_btn.png">
+        </span>
+        <span class="gameboard" id="gameboard"><img src="./image/rullet_board.png"></span>    
+        </div>
+    </section>
+    <input type="button" value="게임응모완료" id="btn">
+</form>
+</body>
+<script src="./game.js?v=2"></script> 
+</html>

@@ -1,0 +1,21 @@
+.outline { height: auto; position: relative;}
+.roule_bk{ 
+    position: absolute;
+    width: 100%;
+}
+.roule_bk > img { width: 100%; object-fit: cover;}
+.gamepan { position: absolute; width: 80%; left:50%; 
+margin-left: -40%;  bottom: 7.5%; }
+
+.gamepan > img { width: 100%; object-fit: cover; }
+.gamebtn { position: absolute; width: 40%; height: 40%;
+top:0; bottom: 0; left: 0; right: 0; margin: auto; z-index: 3;
+}
+.gamepin { position: absolute; width: 10%; height: 10%; left: 0;
+right: 0; margin: auto; z-index: 3;
+}
+.gameboard { transition: all 5s ease; }
+.msg { background-color: black; color:white; font-size: 12px;
+ width: 60%; height: 60px; position: absolute; z-index: 10;
+ border-radius: 10px; text-align: center; line-height: 60px;
+ left:0; right: 0; margin: auto; top: 200px; display: none; }

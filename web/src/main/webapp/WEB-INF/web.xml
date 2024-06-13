@@ -137,4 +137,13 @@
   	<servlet-name>middle14</servlet-name>
   	<url-pattern>/js/middle14.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>gameok</servlet-name>
+  	<servlet-class>js.gameok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>gameok</servlet-name>
+  	<url-pattern>/js/gameok.do</url-pattern>
+  </servlet-mapping>
 </web-app>
