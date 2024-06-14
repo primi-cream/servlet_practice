@@ -146,4 +146,23 @@
   	<servlet-name>gameok</servlet-name>
   	<url-pattern>/js/gameok.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>membership</servlet-name>
+  	<servlet-class>shop.member_ship</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>membership</servlet-name>
+  	<url-pattern>/shop/member_ship.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>memberok</servlet-name>
+  	<servlet-class>shop.member_ok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>memberok</servlet-name>
+  	<url-pattern>/shop/member_ok.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>

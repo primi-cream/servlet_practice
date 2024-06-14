@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="./common.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./members.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./reset.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./chosen.css?v=1"> 
+</head>
+<body>
+<div class="base_info_box">
+    <h3>기본정보</h3>
+    <span class="important"></span>
+    <div class="base_info_sec">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+                <col width="25%">
+                <col width="75%">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th><span class="important">아이디</span></th>
+                <td>
+                    <div class="member_warning">
+                        <input type="text">
+                    </div>
+                </td>
+
+            </tr>
+            <tr class="">
+                <th><span class="important">비밀번호</span></th>
+                <td class="member_password">
+                    <div class="member_warning">
+                        <input type="password" autocomplete="off" placeholder="">
+                    </div>
+                </td>
+            </tr>
+            <tr class="">
+                <th><span class="important">비밀번호 확인</span></th>
+                <td>
+                    <div class="member_warning">
+                        <input type="password" class="check-id" autocomplete="off">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span class="important">이름</span></th>
+                <td>
+                    <div class="member_warning">
+                        <input type="text" value="" maxlength="30">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span>이메일</span></th>
+                <td class="member_email">
+                    <div class="member_warning">
+                        <input type="text" value="" tabindex="-1" style="float: left;">
+                        <select class="chosen-select" style="display: block;">
+                            <option value="self">직접입력</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="hanmail.net">hanmail.net</option>
+                            <option value="daum.net">daum.net</option>
+                            <option value="nate.com">nate.com</option>
+                            <option value="hotmail.com">hotmail.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                        </select>
+                    </div>
+                    <div class="form_element">
+                        <label>
+                        <input type="checkbox">정보/이벤트 메일 수신에 동의합니다.
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span>휴대폰번호</span></th>
+                <td class="member_address">
+                    <div class="address_postcode">
+                        <input type="text" id="cellPhone" maxlength="11" placeholder="- 없이 입력하세요." value="">
+                    </div>
+                    <div class="form_element">
+                        <input type="checkbox" id="smsFl">
+                        <label for="smsFl" class="check_s ">정보/이벤트 SMS 수신에 동의합니다.</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span>전화번호</span></th>
+                <td>
+                    <div class="member_warning">
+                        <input type="text" maxlength="12" placeholder="- 없이 입력하세요." value="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><span>주소</span></th>
+                <td class="member_address">
+                    <div class="address_postcode">
+                        <input type="text" readonly="readonly" style="width: 100px;" value="">
+                        <button type="button">우편번호검색</button>
+                    </div>
+                    <div class="address_input">
+                        <div class="member_warning">
+                            <input type="text" readonly="readonly" value="">
+                        </div>
+                        <div class="member_warning js_address_sub">
+                            <input type="text" value="">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+ 
+</div>
+</body>
+</html>

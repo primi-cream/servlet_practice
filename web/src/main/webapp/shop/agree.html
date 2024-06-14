@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 - 약관동의 1</title>
+<script src="./jquery3.js"></script> <!-- $ -->
+</head>
+<script>
+/*
+$(document).ready(function(){
+	
+});*/
+
+$(()=>{
+	$("#btn").click(function(){
+		var $ag1 = $("#agree1").is(":checked");
+		var $ag2 = $("#agree2").is(":checked");
+		if($ag1 == false || $ag2 == false){
+			alert("약관에 모두 동의하셔야만 회원가입이 진행 됩니다.");
+		} else {
+			$("#frm").attr("method","post");
+			$("#frm").attr("action","./member_ship.do");
+			$("#frm").submit();
+		}
+	});
+	
+	//attr : setattribute(js) - source 속성을 수정
+	//prop : 브라우저의 메모리 영역 파트를 변경
+	$("#all").click(function(){
+		var $all = $(this).is(":checked");
+		$(".agrees").prop("checked",$all);
+	});
+	
+	// > : 부모태그와 자식태그사이에 다른 태그가 없을 경우 
+	$("#box .agrees").click(function(){	// 부모, 자식태크 사이에 label 태그가 있으므로
+		var $node = $(".agrees").index(this);
+		//console.log($node);
+		var $ag = $(".agrees").eq($node).is(":checked");
+		console.log($ag);
+		if($ag == false){
+			$("#all").prop("checked",false);
+		}
+		
+		
+	});
+	
+});
+</script>
+<body>
+<form id="frm">
+<P>약관동의</P>
+<label><input type="checkbox" id="all">전체선택</label><br>
+<div id="box">
+<label><input type="checkbox" id="agree1" name="ag1" class="ag1 agrees" value="Y">이용약관</label><br>
+<label><input type="checkbox" id="agree2" name="ag2" class="ag2 agrees" value="Y">개인정보 수집 및 이용</label><br>
+</div>
+<button type="button" id="btn">다음단계</button>
+</form>
+</body>
+</html>
