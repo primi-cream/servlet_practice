@@ -44,20 +44,20 @@ public class member_ok extends HttpServlet {
 			//System.out.println("정상적으로 DB 연결 완료!");
 			String sql = "INSERT INTO easy_member"
 					+ "(no,id,pw,name,email,email_ok,tel,tel_ok,hp,address,terms_ok,user_info_ok,create_date,address_detail)"
-					+ "VALUES('0',?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+					+ "VALUES('0',?,?,?,?,'Y',?,'Y',?,?,'Y','Y',now(),?)";
 			PreparedStatement ps = ct.prepareStatement(sql);
 			ps.setString(1,"id");
 			ps.setString(2,"pw");
 			ps.setString(3,"mname");
 			ps.setString(4,"memail");
-			ps.setString(5,"event_mail");
-			ps.setString(6,"mtel");
-			ps.setString(7,"event_sms");
-			ps.setString(8,"cellPhone");
-			ps.setString(9,"addr");
-			ps.setString(10,"agl");
-			ps.setString(11,"ag2");
-			ps.setString(12,"address_detail");
+//			ps.setString(5,"event_mail");
+			ps.setString(5,"mtel");
+//			ps.setString(5,"event_sms");
+			ps.setString(6,"cellPhone");
+			ps.setString(7,"addr");
+//			ps.setString(8,"agl");
+//			ps.setString(9,"ag2");
+			ps.setString(8,"address_detail");
 			
 			int result = ps.executeUpdate();
 			PrintWriter pwr = response.getWriter();

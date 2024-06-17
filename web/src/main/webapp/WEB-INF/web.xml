@@ -165,4 +165,13 @@
   	<url-pattern>/shop/member_ok.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+  	<servlet-name>cms</servlet-name>
+  	<servlet-class>cms.testcms</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms</servlet-name>
+  	<url-pattern>/testcms.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>

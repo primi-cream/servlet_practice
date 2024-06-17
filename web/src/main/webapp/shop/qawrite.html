@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1문의 게시판</title>
+    <link type="text/css" rel="stylesheet" href="./common.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./board.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./reset.css?v=1"> 
+    <link type="text/css" rel="stylesheet" href="./chosen.css?v=1">
+    <script src="./ckeditor/ckeditor.js"></script> 
+</head>
+<body>
+<div class="content">
+    <div class="board_zone_sec">
+        <div class="board_zone_tit">
+            <h2>1:1문의</h2>
+        </div>
+        <div class="board_zone_cont">   
+                <div class="board_zone_write">
+                    <div class="board_write_box">
+                        <table class="board_write_table">
+                            <colgroup>
+                                <col style="width:15%">
+                                <col style="width:85%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th scope="row">말머리</th>
+                                <td>
+                                    <div class="category_select">
+                                        <select class="tune" style="width:127px;">
+                                            <option value="">문의내용</option>
+                                            <option value="상품">상품</option>
+                                            <option value="배송">배송</option>
+                                            <option value="반품/환불">반품/환불</option>
+                                            <option value="교환/변경">교환/변경</option>
+                                            <option value="기타">기타</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">작성자</th>
+                                <td>
+                                    <input type="text" class="text" value="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">비밀번호</th>
+                                <td><input type="password" class="text"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">제목
+                                </th><td><input type="text" value=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">내용</th>
+                                <td class="write_editor">
+                                    <textarea id="editor" cols="30" rows="10"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">첨부파일</th>
+                                <td id="uploadBox">
+                                    <div class="file_upload_sec">
+                                        <label for="attach1">
+                                            <input type="text" class="file_text" title="파일 첨부하기" readonly="readonly">
+                                        </label>
+                                        <div class="btn_upload_box">
+                                            <button type="button" class="btn_upload" title="찾아보기"><em>찾아보기</em></button>
+                                            <input type="file" class="file" title="찾아보기">
+                                            <span class="btn_gray_list"><button type="button" class="btn_gray_big"><span>+ 추가</span></button>
+                                            </span>
+                                        </div>
+                                    </div>
+    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">자동등록방지</th>
+                                <td>
+                                    <div class="capcha">
+                                        <div class="capcha_img">
+                                           
+                                        </div>
+                                        <div class="capcha_txt">
+                                            <p>보이는 순서대로 <br>숫자 및 문자를 모두 입력해 주세요.</p>
+                                            <input type="text" class="text captcha" maxlength="5">
+                                            <span class="btn_gray_list">
+                                                <button type="button" class="btn_gray_small" onclick="gd_reload_captcha()">
+                                                    <span> 이미지 새로고침</span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                 
+    
+                <div class="btn_center_box">
+                    <button type="button" class="btn_before"><strong>이전</strong></button>
+                    <button type="button" class="btn_write_ok"><strong>저장</strong></button>
+                </div>
+        </div>
+    </div>
+    </div>
+</body>
+<script>
+window.onload = function(){	// window.onload : 해당 웹페이지 실행시 즉시 발동시키는 함수
+	var c = CKEDITOR.replace("editor",{	// CKEDITOR.replace - API 사용방법
+		width:900,	
+		height:400
+	});
+}
+</script>
+</html>
