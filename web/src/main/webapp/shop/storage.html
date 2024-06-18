@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>storage 사용법 (local - front)</title>
+</head>
+<body>
+<input type="button" value="스토리지 값 가져오기" onclick="zzz()">
+<input type="button" value="스토리지 삭제" onclick="abc()">
+</body>
+<script>
+// cookie로 사용하는 형태에서 storage로 변경이 최근 트렌드 입니다.
+localStorage.setItem("product","냉장고");	// local storage : 브라우저에 지속적으로 내용이 저장되어 사용하는 형태 ex)장바구니 
+localStorage.setItem("product2","에어컨");
+localStorage.setItem("product3","선풍기");
+
+function zzz(){
+	var data = localStorage.getItem("product");
+	console.log(data);
+}
+
+function abc(){
+	//localStorage.removeItem("product");	// 부분삭제 (값삭제)
+	localStorage.clear();	// 완전삭제
+}
+</script>
+</html>

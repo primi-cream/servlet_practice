@@ -1,67 +1,10 @@
-MYSQL & MariaDB : 3306
-MSSQL : 1433
-Oracle : 1521 (ex.9001~9009와 같이 사용가능)
+Database - 실서버	(회사에서 제공)
+[2024 7.1 ~ 7.3] - 미니 프로젝트 (포트폴리오)
+2024.6.30 -> 기획서 공개 (2인 1조)
 
-statement (부모) - SQL문을 실행할 때 마다 매번 구문을 새로 해석하여 적용 (고정되어 한번쓰는 형태)
-createstatement	-  캐시 메모리를 이용하지만 바인딩 변수가 안됨
-preparedstatement - 캐시 메모리를 이용하여 보다 빠르게 구문을 작동시킴 바인딩 변수( ?-바인딩변수-)를 사용가능 
+[프로젝트명: 스키 예약시스템] - 2024 겨울시즌 (모바일전용)
+제공 파일
+6개 : HTML, CSS
+2개 : Jquery
 
-statement & createstatement - create, drop, alter (단 한번만 실행되면 끝나는 경우 or 드물게 사용되는 경우)
-preparedstatement - select, insert, delete, update
-
-
-404 -> .do 경로오류, jsp 로드 오류
-500 -> Module
-403 -> Controller
-402 -> Loop 발생하여 서버가 정지
-
-
-JAVA -> Jquery -> Javascript -> mysql -> sevlet -> jsp
-
-Java -> Servlet + Class -> jsp (MVC)
-
-
-Servlet -> Controller
-Class -> Module
-jsp -> View
-
-
-lib -> 라이브러리
-RDBMS -> mtsql,mssql,....
-DBMS -> nosql,mongoDB,....
-
-
-
-
-
-
-ckeditor , naver, daum, ...
-
-게시판 Editor - api
-
-1. CKeditor -> 유료, 무료
-2. SmartEditor -> 네이버에서 제공하는 API
-3. DaumEditor -> 네이트, 다음에서 제공하는 API
-4. FCKeditor -> CKeditor 무료버전
-5. RainEditor -> KISA 보호나라 => 보안 이슈 존재
-
-
-
-
-
-
-
-https://velog.io/@leejh3224/%EB%B2%88%EC%97%AD-MySQL%EC%9D%98-ENUM-%ED%83%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EC%95%84%EC%95%BC-%ED%95%A0-8%EA%B0%80%EC%A7%80-%EC%9D%B4%EC%9C%A0
-
-
-
-
-
-
-
-
-
-
-
-
-INSERT INTO easy_member (no,id,pw,name,email,email_ok,tel,tel_ok,hp,address,terms_ok,user_info_ok,create_date,address_detail) VALUES ('0','hong','231dsfs423','hing','aaa@aasd.com','N','11111111111','N','02020202','hinghing','N','N',now(),'101111호');
+[로그인,비회원,회원가입,예약시스템(예약취소),대여구매,최종 예약확인 정보 출력(비용포함),메일 시스템]

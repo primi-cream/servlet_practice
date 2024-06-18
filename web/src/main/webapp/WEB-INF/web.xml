@@ -174,4 +174,54 @@
   	<url-pattern>/testcms.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+  	<servlet-name>cms_insert</servlet-name>
+  	<servlet-class>cms.insertok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms_insert</servlet-name>
+  	<url-pattern>/shop/insertok.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>cms_login</servlet-name>
+  	<servlet-class>cms.loginok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms_login</servlet-name>
+  	<url-pattern>/shop/loginok.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>cms_session1</servlet-name>
+  	<servlet-class>cms.session1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms_session1</servlet-name>
+  	<url-pattern>/shop/session1.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>cms_session2</servlet-name>
+  	<servlet-class>cms.session2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms_session2</servlet-name>
+  	<url-pattern>/shop/session2.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>cms_session3</servlet-name>
+  	<servlet-class>cms.session3</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cms_session3</servlet-name>
+  	<url-pattern>/shop/session3.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- session-timeout: 분단위 -->
+  <session-config>
+  	<session-timeout>5</session-timeout>
+  </session-config>
+  
 </web-app>

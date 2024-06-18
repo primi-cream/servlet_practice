@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>간편회원가입</title>
+<script src="./jquery3.js"></script>
+</head>
+<body>
+<form id="frm">
+<p>간편회원가입</p>
+<!-- tabindex : tab키를 활용시 커서 위치를 설정하는 속성 -->
+아이디 : <input type="text" name="uid" id="uid" tabindex="1"> <input type="button" value="중복체크"><br>
+패스워드 : <input type="password" name="upass" id="upass" tabindex="2"><br>
+고객명 : <input type="text" name="uname" id="uname" tabindex="3"><br>
+<button type="button" id="btn">간편 회원가입</button>
+</form>
+</body>
+<script>
+$(()=>{
+	$("#btn").click(function(){
+		if($("#uid").val() == "" || $("#upass").val() == "" || $("#uname").val() == ""){
+			alert("모든 입력값은 필수입니다.");
+		} else {
+			$("#frm").attr("method","post");
+			$("#frm").attr("action","./insertok.do");
+			$("#frm").submit();
+		}
+	});
+});
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>쿠키로 제어 하기</title>
+</head>
+<body>
+<div id="popup">레이어 팝업창</div>
+<input type="button" value="쿠키생성" onclick="aaa()"><br>
+<input type="button" value="쿠키삭제" onclick="bbb()"><br>
+</body>
+<script>
+window.onload = function(){	// 해당 페이지 실행시 즉시 발동하는 함수
+	var ck = "pop=";
+	console.log(document.cookie);	// 값 name, value
+	console.log(document.cookie.length);
+	/*
+	var sp = document.cookie.split("=");	// 쿠키값을 확인하여 팝업 여부를 체크
+	console.log(sp);
+	if(sp[1] == "Y"){
+		document.getElementById("popup").style.display = "none";
+	}
+	*/
+	// 팝업을 자동으로 유/무를 체크
+	var sp = document.cookie.split("&");	// pop=Y&날짜시간 : sp[1](날짜),sp[0](pop=Y)
+	// 해당 페이지를 접속할 때의 window 시간
+	var today = new Date();	
+	today.setDate(today.getDate());
+	
+	if(sp[1] > today.toUTCString()){	// 해당시간 이전일 경우 팝업을 출력하지 않음
+		document.getElementById("popup").style.display = "none";
+	} else {	// 해당 시간 이후의 경우 (expires 삭제되면서 else가 작동하여 팝업이 출력) 
+		document.getElementById("popup").style.display = "block";
+	}
+}
+
+function aaa(){	// 쿠키 생성
+	var today = new Date();	
+	today.setDate(today.getDate() + 1); // 1일 동안 유지
+	var data = "Y&" + today.toUTCString();	// Y&쿠키가 유지되는 날짜와 시간
+	document.cookie = "pop=" + data + "; expires=" + today.toUTCString();
+}
+
+function bbb(){	// 쿠키 삭제
+	document.cookie = "pop=;";
+}
+</script>
+</html>

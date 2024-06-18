@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 - Database</title>
+<script src="./jquery3.js"></script>
+</head>
+<body>
+<form id="frm">
+<p>회원 로그인</p>
+아이디 : <input type="text" name="uid" id="uid"><br>
+패스워드 : <input type="password" name="upass" id="upass"><br>
+<input type="checkbox" id="save_id"> 아이디 저장<br>
+<button>로그인</button>
+</form>
+</body>
+<script>
+$(()=>{	// 아이디 저장 체크 핸들링 함수
+	var $st = localStorage.getItem("userid");
+	console.log($st);
+	if($st != null){
+		$("#uid").val($st);
+		$("#save_id").prop("checked", true);
+	}
+	
+	$("#save_id").click(function(){
+		if($("#uid").val()==""){
+			alert("아이디 저장시 해당 아이디 값을 입력 하셔야 합니다.");
+		//	$(this).prop("checked", false);	// checkbox에 체크가 되지 않도록 함
+		} else {
+			if($(this).is(":checked")){
+				localStorage.setItem("userid",$("#uid").val());
+			} else {
+				localStorage.removeItem("userid");
+			}
+		}
+	});
+	
+	$("#frm").submit(function(){
+		if($("#uid").val()=="" || $("#upass").val()==""){
+			alert("아이디 및 패스워드를 입력하세요");
+			return false;
+		} else {
+			$("#frm").attr("method","post");
+			$("#frm").attr("action","./loginok.do");
+			return
+		}
+	});
+});
+</script>
+</html>

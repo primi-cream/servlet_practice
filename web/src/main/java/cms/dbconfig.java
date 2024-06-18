@@ -10,7 +10,7 @@ public class dbconfig {
 	public Connection info() throws Exception{
 		String db_driver = "com.mysql.cj.jdbc.Driver"; // lib -> java
 	//	String db_driver = "com.mysql.jdbc.Driver";	// lib -> j		database 드라이브 연결 속성
-		String db_url = "jdbc:mysql://172.30.1.41:3306/cms";	// JDBC : Java DataBase Connect 내부 : localhost, 외부 : ip또는 도메인명을 이용하여 접속
+		String db_url = "jdbc:mysql://172.30.1.85:3306/cms";	// JDBC : Java DataBase Connect 내부 : localhost, 외부 : ip또는 도메인명을 이용하여 접속
 		String db_user = "hana";	//user id
 		String db_pass = "hana1234";	//user pw
 		
