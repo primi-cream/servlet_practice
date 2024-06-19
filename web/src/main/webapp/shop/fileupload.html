@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>첨부파일 기능 - java + I/O</title>
+<script src="./jquery3.js"></script>
+</head>
+<body>
+<!-- multipart/form-data : type이 file일 경우는 무조건 사용해야만 back에서 처리가 가능함 -->
+<form id="frm">
+리뷰내용 : <input type="text" name="mreview"> <br>
+첨부파일 : <input type="file" name="mfile" id="mfile"><br>
+<input type="button" value="전송" id="btn"><br>
+</form>
+</body>
+<script>
+	$(()=>{
+		var $result = "";	// 속성 확인하는 변수
+		$("#btn").click(function(){
+			
+			if($("#mfile").val() != ""){	// 파일첨부 시
+				var $filename = $("#mfile").val();
+				// name(파일명), size(파일크기), type(이미지, 동영상, 문서파일 ...)
+				var $filesize = $("#mfile")[0].files[0].size;
+				var $filetype = $("#mfile")[0].files[0].type;
+				if($filesize > 2097152){ // 2MB
+					alert("파일 첨부용량은 2MB 이하만 적용됩니다.");	
+					$result = "no";
+				} else {	//2MB 이하이며 첨부파일 시 파일속성(이미지만 설정)
+					// png,jpeg,jpg,gif,webp,svg,bmp
+					var $f = ["png","jpeg","jpg","gif","webp","svg","bmp","zip"];
+					/*
+						응용문제 : 이미지 파일 첨부에 대한 속성값을 배열로 반복문을 이용하여
+						정상적인 이미지 파일일 경우 console.log("ok") 해당 배열 맞는 파일 속성 없는 경우 console.log("no")
+					*/
+					// type이 없는 경우 ex)sql => sql의 경우 실제 적용될 위험 또한 있음.
+					var $w = 0;
+
+					while($f.length > $w){
+						if($filetype.indexOf($f[$w]) >= 0){	// include 사용가능? test (Javascript)
+							$result = "ok";
+							break;
+						} else {
+							$result = "no";
+						} 
+						$w++;
+					}	
+				}
+			} 
+			if($result == "ok" || $result == ""){
+				$("#frm").attr("method","post");
+			//	$("#frm").attr("action","./fileok.do");	//db없는 파일
+				$("#frm").attr("action","./fileok2.do");	//db있는 파일
+				$("#frm").attr("enctype","multipart/form-data");
+				$("#frm").submit();
+			} else {
+				alert("해당 첨부파일은 이미지 및 압축(zip)만 사용가능 합니다.");
+				$("#mfile").val("");	// 파일첨부 된 내용을 초기화
+			}
+		});
+	});
+</script>
+</html>

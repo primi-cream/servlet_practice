@@ -224,4 +224,39 @@
   	<session-timeout>5</session-timeout>
   </session-config>
   
+  <servlet>
+  	<servlet-name>logout</servlet-name>
+  	<servlet-class>cms.logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>logout</servlet-name>
+  	<url-pattern>/shop/logout.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>fileok</servlet-name>
+  	<servlet-class>cms.fileok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fileok</servlet-name>
+  	<url-pattern>/shop/fileok.do</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+  	<servlet-name>fileok2</servlet-name>
+  	<servlet-class>cms.fileok2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fileok2</servlet-name>
+  	<url-pattern>/shop/fileok2.do</url-pattern>
+  </servlet-mapping>  
+ 
+  <servlet>
+  	<servlet-name>uploadlist</servlet-name>
+  	<servlet-class>cms.upload_list</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>uploadlist</servlet-name>
+  	<url-pattern>/shop/upload_list.do</url-pattern>
+  </servlet-mapping>   
 </web-app>

@@ -8,3 +8,34 @@ Database - 실서버	(회사에서 제공)
 2개 : Jquery
 
 [로그인,비회원,회원가입,예약시스템(예약취소),대여구매,최종 예약확인 정보 출력(비용포함),메일 시스템]
+
+
+
+
+
+1. 기획서 맞게 DB 설계
+2. 회원가입 -> insert
+3. 로그인 -> select + session
+4. 로그아웃 -> session
+
+
+10MB(byte) 10Mb(bit)
+
+[TCP, UDP]
+
+JAVA I/O => Socket
+
+WEB I/O => http, https, ftp, sftp, pop3, imap, ssh => network protocol(Routing)  
+
+
+
+prefix
+1. 회원가입, 로그인
+2. 첨부파일
+3. 패스워드 변경
+4. 아이디 찾기
+5. 아이디 중복 - ajax
+6. 검색
+7. 데이터 수정
+8. 패스워드 암호화
+
