@@ -39,3 +39,15 @@ prefix
 7. 데이터 수정
 8. 패스워드 암호화
 
+
+
+
+create table filelist(
+fidx int(7) unsigned not null auto_increment,
+f_img text,
+f_text varchar(200) not null,
+f_indate timestamp not null default current_timestamp,
+primary key(fidx)
+);
+
+
