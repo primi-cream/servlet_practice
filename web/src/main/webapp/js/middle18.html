@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery UI 사용법</title>
+<script src="./jquery.js"></script> <!-- jq engine -->
+<script src="./jqui/jquery-ui.js?v=2"></script> <!-- jq ui engine --> 
+<script src="./middle18.js?v=2"></script> <!-- jq development source -->
+<link rel="stylesheet" type="text/css" href="./jqui/jquery-ui.css"> <!-- jq ui 퍼블리싱 -->
+</head>
+<style>
+.popup{
+width:100px;
+height:100px;
+background-color:blue;
+}
+
+.popup2{
+width:30px;
+height:30px;
+background:orange;
+}
+
+.menu{
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menu .ui-selecting{
+background-color:pink;
+}
+
+.menu .ui-selected{
+background-color:pink;
+}
+
+.menu > li{
+width:100px;
+height:30px;
+border:1px solid black;
+}
+</style>
+<body>
+<input type="text" id="today" readonly="readonly">
+
+<div class="popup" id="popup">
+
+</div>
+<div class="popup2" id="popup2">
+
+</div>
+
+<ol id="menu" class="menu">
+<li class="ui-widget-contant">menu1</li>
+<li class="ui-widget-contant">menu2</li>
+<li class="ui-widget-contant">menu3</li>
+<li class="ui-widget-contant">menu4</li>
+<li class="ui-widget-contant">menu5</li>
+</ol>
+<br><br><br><br>
+<ol id="menu2" class="menu">
+<li class="ui-widget-contant">menu1</li>
+<li class="ui-widget-contant">menu2</li>
+<li class="ui-widget-contant">menu3</li>
+<li class="ui-widget-contant">menu4</li>
+<li class="ui-widget-contant">menu5</li>
+</ol>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript - ajax</title>
+<!-- datfile : xml,json,jsp,do -->
+<!-- json : [](key없는 배열), {}(key 배열) -->
+</head>
+<body>
+<input type="button" value="클릭" onclick="ajax_load()">
+</body>
+<script>
+var aj; // 통신 및 데이터를 받는 변수
+function ajax_load(){
+	function wck(){
+		// XMLHttpRequest : 서버와 클라이언트가 서로 상호작용을 할 수 있도록 사용하는 통신언어 (XHR)
+		if(window.XMLHttpRequest){	
+			return new XMLHttpRequest();	// XHR 신규 생성
+		}
+	}
+	
+	function ajload(){
+		// readyState : 송수신이 정상적인 상황 (XMLHttpRequest.DONE or 4)
+		if(aj.readyState==XMLHttpRequest.DONE && aj.status==200){ // aj.readyState==4 && aj.status==200
+			console.log(this.response);
+		}
+	}
+	aj = wck();
+	aj.onreadystatechange = ajload;
+	aj.open("GET","./data.json",true);
+	aj.send();
+}
+</script>
+</html>
