@@ -1,0 +1,59 @@
+{ "flat_product":[
+    {
+        "product_nm":"로지텍 G443 무선 헤드셋",
+        "product_img":"./product/019.jpg",
+        "product_color":"블랙",
+        "product_money":"95230",
+        "product_dc":"90000"
+    },
+    {
+        "product_nm":"삼지아이티 피스넷 에어",
+        "product_img":"./product/037.jpg",
+        "product_color":"실버화이트",
+        "product_money":"31460",
+        "product_dc":""
+    },
+    {
+        "product_nm":"샤오미 미 밴드 블랙",
+        "product_img":"./product/049.jpg",
+        "product_color":"블랙",
+        "product_money":"26640",
+        "product_dc":"25000"
+    },
+    {
+        "product_nm":"서진네트웍스 블루투스 스테레오 헤드셋",
+        "product_img":"./product/060.jpg",
+        "product_color":"아이보리",
+        "product_money":"48000",
+        "product_dc":""
+    },
+    {
+        "product_nm":"APPLE 홈팟 미니 블루투스 스피커",
+        "product_img":"./product/061.jpg",
+        "product_color":"화이트",
+        "product_money":"113400",
+        "product_dc":"100000"
+    },
+    {
+        "product_nm":"필립스 전기면도기 S7786",
+        "product_img":"./product/078.jpg",
+        "product_color":"블랙",
+        "product_money":"221800",
+        "product_dc":"200000"
+    },
+    {
+        "product_nm":"어메이즈핏 스마트워치",
+        "product_img":"./product/081.jpg",
+        "product_color":"블랙",
+        "product_money":"192000",
+        "product_dc":""
+    },
+    {
+        "product_nm":"원모어 피스톤 피트 이어폰",
+        "product_img":"./product/085.jpg",
+        "product_color":"그레이",
+        "product_money":"14900",
+        "product_dc":"10000"
+    }
+    ]
+}

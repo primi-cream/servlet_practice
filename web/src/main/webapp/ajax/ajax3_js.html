@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery - Ajax</title>
+<script src="../js/jquery.js"></script>
+</head>
+<script>
+$(()=>{
+	let $data;	// ajax로 response 받는 변수
+	let $html;	// 데이터를 html에 출력하기 위한 변수
+	$.ajax({
+		url:"./product.json",	// 파일명 및 경로
+		cache:false,	// 캐시 메모리 활용 (데이터 부분적 적용 필요 시 사용)
+		type:"GET",		// 전송방식
+		dataType:"JSON",	// 전송파일 형태
+		async:true,		// 비동기, 동기화
+		success:function($node,$result){	// 성공
+			//console.log($node);			// 배열
+			//console.log($result);			// 결과형태
+			$data=$node;
+			$.fn.htmls();
+		},error:function($result){		// 오류
+			console.log("통신오류 발생!!")
+		}
+	});
+	
+	$.fn.htmls = function(){	// each(2개 인자) = forEach(3개 인자)
+		$.each($data["flat_product"],function($a,$b){	// $.each, $.map
+			console.log($b);
+			$("#box").append("<label>"+$b['product_nm']+"</label><br>");
+		});
+	}
+});
+</script>
+<body>
+<div id="box">
+</div>
+</body>
+</html>

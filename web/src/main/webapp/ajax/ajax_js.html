@@ -8,8 +8,12 @@
 </head>
 <body>
 <input type="button" value="클릭" onclick="ajax_load()">
+<div id="box">
+
+</div>
 </body>
 <script>
+// ajax : 비동기 통신
 var aj; // 통신 및 데이터를 받는 변수
 function ajax_load(){
 	function wck(){
@@ -21,14 +25,36 @@ function ajax_load(){
 	
 	function ajload(){
 		// readyState : 송수신이 정상적인 상황 (XMLHttpRequest.DONE or 4)
-		if(aj.readyState==XMLHttpRequest.DONE && aj.status==200){ // aj.readyState==4 && aj.status==200
-			console.log(this.response);
+		// readyState : 0(객체 생성),1(open - GET,POST,PUT,... 정상적으로 실행),
+		// 2(응답결과만 체크),3(요청에 대한 처리 결과),4(요청된 데이터 및 값을 로드)
+		// status : 응답결과 200(성공)
+		if(aj.readyState==XMLHttpRequest.DONE && aj.status==200){ 
+			//console.log(this.response);	// 배열 출력
+			htmlcode(this.response);
+		} else if(aj.status==402 || aj.status==403 || aj.status==500){
+			alert("서버와 통신 오류 발생!!");
 		}
 	}
-	aj = wck();
-	aj.onreadystatechange = ajload;
-	aj.open("GET","./data.json",true);
-	aj.send();
+	var v = new Date();	// 지속적으로 json을 reflash 해주는 형태
+	aj = wck();	// 통신함수 생성
+	aj.onreadystatechange = ajload;	// onreadystatechange : 통신 결과에 대한 return 역할
+	aj.open("GET","./data.json?v="+v,true);	// open("통신방법","파일명","동기-false or 비동기-true 통신 defalut 값이 true이므로 적지않을 시 true적용")
+	aj.send();	// send : ajax 통신 값을 전달
 }
+
+// html 출력파트
+function htmlcode(data){
+	var z = JSON.parse(data);	// 문자열 -> 배열로 변경 (JSON.parse)
+	var html = document.getElementById("box");
+	var w = 0;
+	while(w < z[0].length){
+		var code = "고객명: " + z[0][w] + "나이: " + z[1][w];
+		html.append(code);
+		w++;
+	}
+}
+
+
+
 </script>
 </html>

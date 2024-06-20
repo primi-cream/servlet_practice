@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript - ajax2</title>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script>
+var data;
+function dataloads(){	// 5초에 한번씩 데이터를 새롭게 로드
+	var html = new XMLHttpRequest();	// 통신 XHR을 생성
+	html.onreadystatechange = function(){	// 통신에 대한 성공,실패,오류 등 체크
+		if(html.readyState == 4 && html.status == 200){
+			data = JSON.parse(this.response);
+			htmlcode();
+		}
+	}
+	
+	var v = new Date();	// json파일을 신규로 갱신 시키기 위한 변수
+	html.open("GET","./member.json?a="+v,true);	// 비동기화
+	html.send();	// 통신 실행
+}
+setInterval(dataloads,5000); // 5초에 한번씩 해당 함수 호출
+
+function htmlcode(){
+	var h = document.getElementById("box");
+	
+	var code = "";
+	data.forEach(function(a,b,c){
+		code += `<span>고유번호 : `+ a["seq"] +`</span>	// Apostrophe 의 경우 줄바꿈에도 에러 발생 X single qutation 의 경우 에러 발생 (줄바꿈 인식)
+		<span>상품명 : ` + a["product"] +`</span>
+		<span>상품명 : `+ a["price"] +`</span><br>`;
+	});
+	h.innerHTML=code;
+}
+
+
+
+//var aaa = new Array();
+//Instance 내부에서 값을 어떤 방식으로 가져오는지 안다면 바로 알 수 있음.
+//aaa.test = function(){	// aaa[test(function)]
+//	aaa.push("test"); 
+//	return "Test";
+//}
+//console.log(aaa.test());
+</script>
+</html>
